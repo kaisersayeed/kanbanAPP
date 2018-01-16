@@ -99,6 +99,25 @@ module.exports = {
         include: [root.src, /node_modules/]
       },
       {
+        test: /\.scss$/,
+        loader: IS_DEV
+            ? [
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader',
+          { loader: 'sass-loader', options: { includePaths: [root.src] } }
+        ]
+            : ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: 'css-loader', options: { importLoaders: 1 } },
+            'postcss-loader',
+            { loader: 'sass-loader', options: { includePaths: [root.src] } }
+          ]
+        }),
+        include: root.src
+      },
+      {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/i,
         loader: 'file-loader',
         query: {
