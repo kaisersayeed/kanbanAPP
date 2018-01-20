@@ -1,6 +1,5 @@
 import * as actionTypes from '../constants/actionTypes';
 import uuid from 'uuid';
-import update from 'react-addons-update';
 
 const defaultState = [
   {
@@ -24,6 +23,15 @@ export default function lanes(state = defaultState, action) {
   switch (action.type) {
     case actionTypes.CREATE_LANE:
       return state.concat(action.payload);
+
+    case actionTypes.UPDATE_LANE:
+      return state.map(lane => {
+        if (lane.id === action.payload.id) {
+          return Object.assign({}, lane, action.payload);
+        }
+
+        return lane;
+      });
 
     default:
       return state;

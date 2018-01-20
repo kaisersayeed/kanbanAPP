@@ -34,6 +34,30 @@ function createLane(name) {
   };
 }
 
+
+/**
+ * Returns the action to update a lane
+ * @param  {Object} updatedLane Updated lane properties
+ * @return {Object}
+ * @example
+ * updateLane({
+ *   id: String,
+ *   name: String,
+ *   editing: Bool
+ * })
+ */
+function updateLane(updatedLane) {
+  if (typeof updatedLane !== 'object' || !isV4(updatedLane.id)) {
+    throw new Error(`params ${updatedLane}`);
+  }
+
+  return {
+    type: actionTypes.UPDATE_LANE,
+    payload: updatedLane,
+  };
+}
+
 export default {
-  createLane
+  createLane,
+  updateLane
 };
