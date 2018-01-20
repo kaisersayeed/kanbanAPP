@@ -19,8 +19,7 @@ const devPlugings = [
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: './template.html'
-  }),
-  new CopyPlugin([{ from: 'static', to: '' }])
+  })
 ];
 
 const prodPlugins = [
