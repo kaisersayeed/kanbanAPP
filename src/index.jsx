@@ -3,12 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
 import localforage from 'localforage';
 import configStore from './store';
-
-const App = () => (
-    <div>
-      This is a simple kanban app.
-    </div>
-);
+import App from './containers/App'
 
 const localStore = localforage.createInstance({
   name: 'kanban',
